@@ -5,7 +5,6 @@ const productSchema = new mongoose.Schema({
     title: {
         type: String,
         required: true,
-        unique: true,
         trim: true
     },
 
@@ -15,16 +14,29 @@ const productSchema = new mongoose.Schema({
         trim: true
     },
 
+    img: {
+        type: String,
+        required: true,
+        trim: true
+    },
+
+    categories: {
+        type: Array,
+        required: true,
+        trim: true
+    },
+    size: {
+        type: String,
+        required:true,
+        trim:true,
+    },
+    color: {
+        type: String,
+        required: true,
+    },
     price: {
         type: Number,
         required: true,
-    },
-
-    availableSizes: {
-        type: [String],
-        required:true,
-        trim:true,
-        enum: ["S", "XS", "M", "X", "L", "XXL", "XL"]
     },
 
 

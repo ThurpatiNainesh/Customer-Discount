@@ -2,18 +2,11 @@ const mongoose = require('mongoose')
 
 const userSchema = new mongoose.Schema({
 
-    fname: {
+    username: {
         type: String,
         required: true,
         trim: true
     },
-
-    lname: {
-        type: String,
-        required: true,
-        trim: true
-    },
-
     email: {
         type: String,
         unique: true,
@@ -22,10 +15,17 @@ const userSchema = new mongoose.Schema({
     },
     password: {
         type: String,
-        min: 8,
-        max: 15,
         required: true
     }, // encrypted password
+    isAdmin:{
+        type:Boolean,
+        default:false
+    },
+    Categorise: {
+        type: String,
+        enum: ['Regular', 'Gold', 'Platinium'],
+        default: 'Regular',
+      },
 
   
 

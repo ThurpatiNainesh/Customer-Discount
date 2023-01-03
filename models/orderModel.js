@@ -9,37 +9,20 @@ const orderSchema = new mongoose.Schema({
         ref: 'userModel'
     },
 
-    items: [{
-        productId: {
+    productId: {
             type: ObjectId,
             required: true,
             ref: 'productModel'
         },
-
-        quantity: {
-            type: Number,
-            required: true,
-            min: 1
-        }
-    }],
-
-    totalPrice: {
+    amount: {
         type: Number,
         required: true,
         comment: "Holds total price of all the items in the cart"
     },
-
-    totalItems: {
+    discountPercentage:{
         type: Number,
         required: true,
-        comment: "Holds total number of items in the cart"
-    },
-
-    totalQuantity: {
-        type: Number,
-        required: true,
-        comment: "Holds total number of quantity in the cart"
-    },
+    }
 
 
 }, { timestamps: true })
