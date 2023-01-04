@@ -2,7 +2,7 @@ const router = require("express").Router()
 const{Register,updateCustomer,deleteCustomer,getCustomer,getAllCustomer}=require("../controllers/customerController")
 const {verifyToken,verifyTokenAndAuthorization, verifyTokenAndAdmin}=require("./verifyToken")
 const{createProducts,updateProducts,deleteProduct,getProducts}=require("../controllers/productController")
-const{createOrder,updateOrder}=require("../controllers/orderController")
+const{createOrder,updateOrder,createOrder1}=require("../controllers/orderController")
 
 // customer
 router.post("/Register",Register)
@@ -20,6 +20,7 @@ router.get("/getProducts",getProducts);
 
 // ORDER
 router.post("/createOrder",createOrder);
+router.post("/createOrder1",createOrder1);
 router.put("/Order/:id",updateOrder);
 // router.delete("/Cart/:id",verifyTokenAndAdmin,deleteOrder);
 // router.get("/Cart/:customerId",verifyTokenAndAuthorization,getOrders);
