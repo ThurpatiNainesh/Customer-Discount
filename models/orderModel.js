@@ -14,6 +14,10 @@ const orderSchema = new mongoose.Schema({
             required: true,
             ref: 'productModel'
         },
+    quantity:{
+           type:Number,
+           default:1
+        },
     amount: {
         type: Number,
         required: true,
