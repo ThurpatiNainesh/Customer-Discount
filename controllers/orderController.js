@@ -5,7 +5,7 @@ const cron = require("node-cron")
 const createOrder = async function (req, res) {
     try {
         const data=req.body
-        const{userId,productId,amount, discountPercentage}=data
+        const{userId,productId,amount}=data
 
     if (Object.keys(data).length == 0) return res.status(400).send({ status: false, message: "please enter details" });
 
@@ -37,6 +37,8 @@ const createOrder = async function (req, res) {
                let discounPer = amount * 0.10
                let finalAmount = amount - discounPer
                object.amount =finalAmount
+               object.discountPercentage=10
+            
 
 
     }else if(userOrderCount1>20){
@@ -45,17 +47,18 @@ const createOrder = async function (req, res) {
                let discounPer = amount * 0.20
                let finalAmount = amount - discounPer
                object.amount =finalAmount
+               object.discountPercentage=20
 
 
     }else{
                  
                  object.amount =amount
+                 object.discountPercentage=0
 
     }
     
        object. userId=userId;
        object. productId=productId;
-       object.discountPercentage=discountPercentage;
     
     const newOrder = new orderModel(object)
     const saveOrder = await newOrder.save()

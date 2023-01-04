@@ -1,6 +1,7 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const route = require("./routes/route")
+mongoose.set("strictQuery",true)
                  require("dotenv").config()
 
 

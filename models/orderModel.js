@@ -24,7 +24,7 @@ const orderSchema = new mongoose.Schema({
         comment: "Holds total price of all the items in the cart"
     },
     discountPercentage:{
-        type: String,
+        type: Number,
         required: true,
     }
 
