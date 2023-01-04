@@ -1,6 +1,5 @@
 const express = require('express')
 const mongoose = require('mongoose')
-const cron = require("node-cron")
 const route = require("./routes/route")
                  require("dotenv").config()
 

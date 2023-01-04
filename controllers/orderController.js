@@ -20,12 +20,12 @@ const createOrder = async function (req, res) {
         const userOrderCount1=userOrderCount.length
         // const count = sum
         const object={}
-    if(userOrderCount1 >10 && userOrderCount1<20){
         if(userOrderCount1===9){
             cron.schedule('* * * * * *', () => {
                 console.log("you need to make 2 order to reach gold");
               });
         }
+    if(userOrderCount1 >10 && userOrderCount1<20){
         if(userOrderCount1===19){
             cron.schedule('* * * * * *', () => {
                 console.log("you need to make 2 order to reach platinium");
