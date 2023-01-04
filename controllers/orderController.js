@@ -1,5 +1,5 @@
 const orderModel = require("../models/orderModel")
-// const Customer = require("../models/customerModel")
+const Customer = require("../models/customerModel")
 const cron = require("node-cron")
 
 const createOrder = async function (req, res) {
@@ -10,10 +10,15 @@ const createOrder = async function (req, res) {
     if (Object.keys(data).length == 0) return res.status(400).send({ status: false, message: "please enter details" });
 
         const userOrderCount= await orderModel.find({userId:userId})
+        // let sum = 0;
+        // for (let i = 0; i < userOrderCount.length; i++) {
+        //     sum = sum + userOrderCount[i].quantity
+        // }
         if(!userOrderCount){
             res.status(400).json("invalid user")
         }
         const userOrderCount1=userOrderCount.length
+        // const count = sum
         const object={}
     if(userOrderCount1 >10 && userOrderCount1<20){
         if(userOrderCount1===9){
@@ -27,25 +32,24 @@ const createOrder = async function (req, res) {
               });
           }
     //   update to gold
-            //    await Customer.findByIdAndUpdate(userId,{$set:{Categorise:"Gold"}},{new:true})
+               await Customer.findByIdAndUpdate(userId,{$set:{Categorise:"Gold"}},{new:true})
 
-               let discounPer = amount * 0.01
+               let discounPer = amount * 0.10
                let finalAmount = amount - discounPer
                object.amount =finalAmount
 
 
     }else if(userOrderCount1>20){
     //    update to platinum 
-                // await Customer.findByIdAndUpdate(userId,{$set:{Categorise:"Platinium"}},{new:true})
-               let discounPer = amount * 0.02
+                await Customer.findByIdAndUpdate(userId,{$set:{Categorise:"Platinium"}},{new:true})
+               let discounPer = amount * 0.20
                let finalAmount = amount - discounPer
                object.amount =finalAmount
 
 
     }else{
-                 let discounPer = amount 
-                 let finalAmount = amount - discounPer
-                 object.amount =finalAmount
+                 
+                 object.amount =amount
 
     }
     
@@ -61,19 +65,14 @@ const createOrder = async function (req, res) {
     }
 }
 const createOrder1 = async function (req, res){
-    const data=req.body
-    const{userId,productId,amount, discountPercentage}=data;
-
-    let obj={
-        userId:userId,
-        productId:productId,
-        amount:amount,
-        discountPercentage:discountPercentage
-    }
-const newOrder = new orderModel(obj)
 try {
-    const saveOrder = await newOrder.save()
-    res.status(200).json(saveOrder)
+    const {userId}=req.body;
+    const userOrderCount= await orderModel.find({userId:userId})
+    let sum = 0;
+        for (let i = 0; i < userOrderCount.length; i++) {
+            sum = sum + userOrderCount[i].quantity
+        }
+    res.status(200).json(sum)
 } catch (error) {
     res.status(500).json(error)
 }
@@ -98,7 +97,23 @@ const updateOrder = async function (req, res) {
 //     res.status(500).json(error)
 // }
 
-
+// let sum = 0;
+//         for (let i = 0; i < cartDetails.items.length; i++) {
+//             sum = sum + cartDetails.items[i].quantity
+//         }
+//         let totalQuantity = sum
+        
 
 
 module.exports ={createOrder,updateOrder,createOrder1}
+
+// const data=req.body
+//     const{userId,productId,amount, discountPercentage}=data;
+
+//     let obj={
+//         userId:userId,
+//         productId:productId,
+//         amount:amount,
+//         discountPercentage:discountPercentage
+//     }
+// const newOrder = new orderModel(obj)
