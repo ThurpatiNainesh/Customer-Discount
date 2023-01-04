@@ -6,7 +6,7 @@ const route = require("./routes/route")
 
 const app = express()
 app.use(express.json())
-app.use(express.urlencoded({ extended: false }))
+app.use(express.urlencoded({ extended: true }))
 
 mongoose.connect(process.env.MONGO_URL, {
     useNewUrlParser: true

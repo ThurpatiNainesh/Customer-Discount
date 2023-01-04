@@ -17,7 +17,7 @@ const createOrder = async function (req, res) {
         if(!userOrderCount){
             res.status(400).json("invalid user")
         }
-        const userOrderCount1=userOrderCount.length
+        const userOrderCount1=userOrderCount.length+1
         // const count = sum
         const object={}
         if(userOrderCount1===9){
